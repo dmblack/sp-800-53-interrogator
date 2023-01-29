@@ -1,11 +1,14 @@
-.App {
-  text-align: center;
+.ControlParamsProps {
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 }
 
-.App-header {
+.ControlParamsProps-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -16,6 +19,6 @@
   color: white;
 }
 
-.App-link {
+.ControlParamsProps-link {
   color: #61dafb;
 }

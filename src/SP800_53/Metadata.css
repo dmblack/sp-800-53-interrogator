@@ -1,11 +1,12 @@
-.App {
+.Metadata {
   text-align: center;
+  border: 1px solid yellow;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 }
 
-.App-header {
+.Metadata-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -16,6 +17,6 @@
   color: white;
 }
 
-.App-link {
+.Metadata-link {
   color: #61dafb;
 }

@@ -1,13 +1,12 @@
-.App {
+.BackMatter {
   text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 }
 
-.App-header {
+.BackMatter-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +15,6 @@
   color: white;
 }
 
-.App-link {
+.BackMatter-link {
   color: #61dafb;
 }

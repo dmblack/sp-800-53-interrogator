@@ -1,11 +1,12 @@
-.App {
+.Groups {
   text-align: center;
+  border: solid 1px green;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 }
 
-.App-header {
+.Groups-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -16,6 +17,6 @@
   color: white;
 }
 
-.App-link {
+.Groups-link {
   color: #61dafb;
 }

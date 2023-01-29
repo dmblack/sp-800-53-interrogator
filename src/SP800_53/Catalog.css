@@ -1,11 +1,11 @@
-.App {
+.Catalog {
   text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 }
 
-.App-header {
+.Catalog-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -16,6 +16,6 @@
   color: white;
 }
 
-.App-link {
+.Catalog-link {
   color: #61dafb;
 }

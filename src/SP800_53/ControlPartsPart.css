@@ -1,13 +1,12 @@
-.App {
+.ControlPartsPart {
   text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 }
 
-.App-header {
+.ControlPartsPart-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +15,6 @@
   color: white;
 }
 
-.App-link {
+.ControlPartsPart-link {
   color: #61dafb;
 }

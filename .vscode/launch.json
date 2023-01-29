@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "name": "firefox-wsl",
+      "firefoxExecutable": "C:\\Program Files\\WindowsApps\\Mozilla.Firefox_109.0.0.0_x64__n80bbvh6b1yt2\\VFS\\ProgramFiles\\Firefox Package Root\\firefox.exe",
+      "type": "firefox",
+      "request": "attach",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}",
+      "pathMappings": [
+        {
+          "url": "http://localhost:3000/home/dustynblackmore/Development/sp-800-53-interrogator/src",
+          "path": "${workspaceFolder}/src"
+        }
+      ]
+    },
+    {
+      "name": "edge-wsl",
+      "firefoxExecutable": "C:\\Program Files\\WindowsApps\\Mozilla.Firefox_109.0.0.0_x64__n80bbvh6b1yt2\\VFS\\ProgramFiles\\Firefox Package Root\\firefox.exe",
+      "type": "edge",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}"
+    }
+  ]
+}
