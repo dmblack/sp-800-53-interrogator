@@ -18,6 +18,24 @@ const ControlParams = (props) => {
           <ControlParamsProps key={prop.value} prop={prop} />
         )
       }
+      {
+        typeof props.param.guidelines !== 'undefined' 
+        ?
+          <div className="ControlParamsProps-value">
+            Guidelines: { props.param.guidelines.map((guideline) => <div>{guideline.prose}</div>) }
+          </div>
+        : false
+      }
+      {/* {
+        typeof props.param.select !== 'undefined' 
+        ?
+          <div className="ControlParamsProps-value">
+            Select: { props.param.select["how-many"]}
+            Of: { props.param.select.map((select) => <div>{select.choice}</div>) }
+          </div>
+        : false
+      } */}
+      
     </div>
   );
 }
