@@ -1,0 +1,20 @@
+.ControlPart {
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+}
+
+.ControlPart-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.ControlPart-link {
+  color: #61dafb;
+}

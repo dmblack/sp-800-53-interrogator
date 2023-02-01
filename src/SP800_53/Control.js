@@ -1,6 +1,6 @@
 import './Control.css';
 import ControlParams from './ControlParams';
-import ControlParts from './ControlParts';
+import Part from './Part';
 
 const Control = (props) => {
   return (
@@ -24,7 +24,7 @@ const Control = (props) => {
       }
       {
         typeof props.control.parts !== 'undefined'
-          ? props.control.parts.map((part) => <ControlParts key={part.id} part={part} />)
+          ? props.control.parts.map((part) => <Part key={part.id} part={part} />)
           : false
       }
     </div>

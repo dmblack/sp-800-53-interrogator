@@ -1,11 +1,11 @@
-.ControlParts {
+.Part {
   text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 }
 
-.ControlParts-header {
+.Part-header {
   background-color: #282c34;
   display: flex;
   flex-direction: column;
@@ -15,6 +15,6 @@
   color: white;
 }
 
-.ControlParts-link {
+.Part-link {
   color: #61dafb;
 }

@@ -10,9 +10,14 @@ const ControlParams = (props) => {
       <div className="ControlParams-id">
         ID: { props.param.id }
       </div>
-      <div className="ControlParams-label">
-        Label: { props.param.label }
-      </div>
+      {
+        typeof props.param.label !== 'undefined'
+        ? 
+          <div className="ControlParams-label">
+            Label: { props.param.label }
+          </div>
+        : false
+      }  
       {
         props.param.props.map((prop) =>
           <ControlParamsProps key={prop.value} prop={prop} />
@@ -26,15 +31,15 @@ const ControlParams = (props) => {
           </div>
         : false
       }
-      {/* {
+      {
         typeof props.param.select !== 'undefined' 
         ?
           <div className="ControlParamsProps-value">
-            Select: { props.param.select["how-many"]}
-            Of: { props.param.select.map((select) => <div>{select.choice}</div>) }
+            <div>Select: { props.param.select["how-many"]}</div>
+            Of: { props.param.select.choice.map((select) => <div>{select}</div>) }
           </div>
         : false
-      } */}
+      }
       
     </div>
   );
