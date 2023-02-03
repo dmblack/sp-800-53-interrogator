@@ -1,30 +1,12 @@
 import './Guideline.css';
 
-// Future; 'ideally' resolve this schema from the name of the calling react component
-//  'unfortunately' this will likely require a map of the definitions, as components
-//  cannot use characters used in the definition names. (-:, etc)
-//    (note: mapping (object, not array) could be used to resolve the schema by definition
-//    child key-value pair title. To date; this does not seem to include duplicates.
-const schema = require('./catalog-schema.json').definitions["oscal-catalog-oscal-catalog-common:parameter-guideline"]
-const localSchema = {
-  "oscal-catalog-oscal-catalog-common:parameter-guideline": {
-    "title": "Guideline",
-    "description": "A prose statement that provides a recommendation for the use of a parameter.",
-    "$id": "#assembly_oscal-catalog-common_parameter-guideline",
-    "type": "object",
-    "properties": {
-      "prose": {
-        "title": "Guideline Text",
-        "description": "Prose permits multiple paragraphs, lists, tables etc.",
-        "type": "string"
-      }
-    },
-    "required": [
-      "prose"
-    ],
-    "additionalProperties": false
-  }
-}
+// Future; not very happy with this..
+const schema = Object.entries(require('./catalog-schema.json').definitions).filter(
+  (key, value) => {
+    return key[1]["$id"] === "#assembly_oscal-catalog-common_parameter-guideline"
+      ? value
+      : false
+  })[0][1];
 
 /**
  * Rules (parameter -> and beyond):

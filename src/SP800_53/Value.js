@@ -1,20 +1,12 @@
 import './Value.css';
 
-// Future; 'ideally' resolve this schema from the name of the calling react component
-//  'unfortunately' this will likely require a map of the definitions, as components
-//  cannot use characters used in the definition names. (-:, etc)
-//    (note: mapping (object, not array) could be used to resolve the schema by definition
-//    child key-value pair title. To date; this does not seem to include duplicates.
-const schema = require('./catalog-schema.json').definitions["assembly_oscal-catalog-common_parameter-constraint"]
-const localSchema = {
-  "oscal-catalog-oscal-catalog-common:parameter-value": {
-    "title": "Parameter Value",
-    "description": "A parameter value or set of values.",
-    "$id": "#field_oscal-catalog-common_parameter-value",
-    "type": "string",
-    "pattern": "^\\S(.*\\S)?$"
-  }
-}
+// Future; not very happy with this..
+const schema = Object.entries(require('./catalog-schema.json').definitions).filter(
+  (key, value) => {
+    return key[1]["$id"] === "#field_oscal-catalog-common_parameter-value"
+      ? value
+      : false
+  })[0][1];
 
 /**
  * Rules (parameter -> and beyond):

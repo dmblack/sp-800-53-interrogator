@@ -2,8 +2,15 @@ import './Catalog.css';
 import Groups from './Groups';
 import Metadata from './Metadata';
 
-const Catalog = (props) => {
+// Future; not very happy with this..
+const schema = Object.entries(require('./catalog-schema.json').definitions).filter(
+  (key, value) => {
+    return key[1]["$id"] === "#assembly_oscal-catalog_catalog"
+      ? value
+      : false
+  })[0][1];
 
+const Catalog = (props) => {
   return (
     <div className="Catalog">
       <div className="Catalog-uuid">

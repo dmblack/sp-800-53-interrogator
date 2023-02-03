@@ -6,95 +6,13 @@ import Constraint from './Constraint';
 import Guideline from './Guideline';
 import Value from './Value';
 
-// Future; 'ideally' resolve this schema from the name of the calling react component
-//  'unfortunately' this will likely require a map of the definitions, as components
-//  cannot use characters used in the definition names. (-:, etc)
-//    (note: mapping (object, not array) could be used to resolve the schema by definition
-//    child key-value pair title. To date; this does not seem to include duplicates.
-const schema = require('./catalog-schema.json').definitions["oscal-catalog-oscal-catalog-common:parameter"]
-const localSchema = {
-  "oscal-catalog-oscal-catalog-common:parameter": {
-    "title": "Parameter",
-    "description": "Parameters provide a mechanism for the dynamic assignment of value(s) in a control.",
-    "$id": "#assembly_oscal-catalog-common_parameter",
-    "type": "object",
-    "properties": {
-      "id": {
-        "title": "Parameter Identifier",
-        "description": "A human-oriented, locally unique identifier with cross-instance scope that can be used to reference this defined parameter elsewhere in this or other OSCAL instances. When referenced from another OSCAL instance, this identifier must be referenced in the context of the containing resource (e.g., import-profile). This id should be assigned per-subject, which means it should be consistently used to identify the same subject across revisions of the document.",
-        "type": "string",
-        "pattern": "^(\\p{L}|_)(\\p{L}|\\p{N}|[.\\-_])*$"
-      },
-      "class": {
-        "title": "Parameter Class",
-        "description": "A textual label that provides a characterization of the parameter.",
-        "type": "string",
-        "pattern": "^(\\p{L}|_)(\\p{L}|\\p{N}|[.\\-_])*$"
-      },
-      "depends-on": {
-        "title": "Depends on",
-        "description": "**(deprecated)** Another parameter invoking this one. This construct has been deprecated and should not be used.",
-        "type": "string",
-        "pattern": "^(\\p{L}|_)(\\p{L}|\\p{N}|[.\\-_])*$"
-      },
-      "props": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-metadata_property"
-        }
-      },
-      "links": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-metadata_link"
-        }
-      },
-      "label": {
-        "title": "Parameter Label",
-        "description": "A short, placeholder name for the parameter, which can be used as a substitute for a value if no value is assigned.",
-        "type": "string"
-      },
-      "usage": {
-        "title": "Parameter Usage Description",
-        "description": "Describes the purpose and use of a parameter",
-        "type": "string"
-      },
-      "constraints": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-catalog-common_parameter-constraint"
-        }
-      },
-      "guidelines": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-catalog-common_parameter-guideline"
-        }
-      },
-      "values": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#field_oscal-catalog-common_parameter-value"
-        }
-      },
-      "select": {
-        "$ref": "#assembly_oscal-catalog-common_parameter-selection"
-      },
-      "remarks": {
-        "$ref": "#field_oscal-metadata_remarks"
-      }
-    },
-    "required": [
-      "id"
-    ],
-    "additionalProperties": false
-  }
-}
+// Future; not very happy with this..
+const schema = Object.entries(require('./catalog-schema.json').definitions).filter(
+  (key, value) => {
+    return key[1]["$id"] === "#assembly_oscal-catalog-common_parameter"
+      ? value
+      : false
+  })[0][1];
 
 /**
  * Rules (parameter -> and beyond):
@@ -133,7 +51,7 @@ const Parameter = (props) => {
 
                 case "param":
                   if (typeof props.param[entry[0]] !== 'undefined') {
-                    return props.param[entry[0]].map((param) => <Parameter param={param} />)
+                    return props.param[entry[0]].map((param) => <Parameter key={props.control.id + '-' + param.id} param={param} />)
                   }
                   break;
 

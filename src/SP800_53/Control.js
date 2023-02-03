@@ -4,79 +4,13 @@ import MetadataProperty from './MetadataProperty';
 import MetadataLink from './MetadataLink';
 import Part from './Part';
 
-// Future; 'ideally' resolve this schema from the name of the calling react component
-//  'unfortunately' this will likely require a map of the definitions, as components
-//  cannot use characters used in the definition names. (-:, etc)
-//    (note: mapping (object, not array) could be used to resolve the schema by definition
-//    child key-value pair title. To date; this does not seem to include duplicates.
-const schema = require('./catalog-schema.json').definitions["oscal-catalog-oscal-catalog:control"]
-const localSchema = {
-  "oscal-catalog-oscal-catalog:control": {
-    "title": "Control",
-    "description": "A structured information object representing a security or privacy control. Each security or privacy control within the Catalog is defined by a distinct control instance.",
-    "$id": "#assembly_oscal-catalog_control",
-    "type": "object",
-    "properties": {
-      "id": {
-        "title": "Control Identifier",
-        "description": "A human-oriented, locally unique identifier with instance scope that can be used to reference this control elsewhere in this and other OSCAL instances (e.g., profiles). This id should be assigned per-subject, which means it should be consistently used to identify the same control across revisions of the document.",
-        "type": "string",
-        "pattern": "^(\\p{L}|_)(\\p{L}|\\p{N}|[.\\-_])*$"
-      },
-      "class": {
-        "title": "Control Class",
-        "description": "A textual label that provides a sub-type or characterization of the control.",
-        "type": "string",
-        "pattern": "^(\\p{L}|_)(\\p{L}|\\p{N}|[.\\-_])*$"
-      },
-      "title": {
-        "title": "Control Title",
-        "description": "A name given to the control, which may be used by a tool for display and navigation.",
-        "type": "string"
-      },
-      "params": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-catalog-common_parameter"
-        }
-      },
-      "props": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-metadata_property"
-        }
-      },
-      "links": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-metadata_link"
-        }
-      },
-      "parts": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-catalog-common_part"
-        }
-      },
-      "controls": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#assembly_oscal-catalog_control"
-        }
-      }
-    },
-    "required": [
-      "id",
-      "title"
-    ],
-    "additionalProperties": false
-  }
-}
+// Future; not very happy with this..
+const schema = Object.entries(require('./catalog-schema.json').definitions).filter(
+  (key, value) => {
+    return key[1]["$id"] === "#assembly_oscal-catalog_control"
+      ? value
+      : false
+  })[0][1];
 
 /**
  * Rules (parameter -> and beyond):
@@ -97,7 +31,7 @@ const Control = (props) => {
               switch (entry[0]) {
                 case "controls":
                   if (typeof props.control[entry[0]] !== 'undefined') {
-                    return props.control[entry[0]].map((control) => <Control key={props.control.id + '-' + control.id}control={control} />)
+                    return props.control[entry[0]].map((control) => <Control control={control} key={props.control.id + '-' + control.id} />)
                   }
                   break;
                 case "links":

@@ -1,48 +1,12 @@
 import './MetadataLink.css';
 
-// Future; 'ideally' resolve this schema from the name of the calling react component
-//  'unfortunately' this will likely require a map of the definitions, as components
-//  cannot use characters used in the definition names. (-:, etc)
-//    (note: mapping (object, not array) could be used to resolve the schema by definition
-//    child key-value pair title. To date; this does not seem to include duplicates.
-const schema = require('./catalog-schema.json').definitions["oscal-catalog-oscal-metadata:link"]
-const localSchema = {
-  "oscal-catalog-oscal-metadata:link": {
-    "title": "Link",
-    "description": "A reference to a local or remote resource",
-    "$id": "#assembly_oscal-metadata_link",
-    "type": "object",
-    "properties": {
-      "href": {
-        "title": "Hypertext Reference",
-        "description": "A resolvable URL reference to a resource.",
-        "type": "string",
-        "format": "uri-reference"
-      },
-      "rel": {
-        "title": "Relation",
-        "description": "Describes the type of relationship provided by the link. This can be an indicator of the link's purpose.",
-        "type": "string",
-        "pattern": "^(\\p{L}|_)(\\p{L}|\\p{N}|[.\\-_])*$"
-      },
-      "media-type": {
-        "title": "Media Type",
-        "description": "Specifies a media type as defined by the Internet Assigned Numbers Authority (IANA) Media Types Registry.",
-        "type": "string",
-        "pattern": "^\\S(.*\\S)?$"
-      },
-      "text": {
-        "title": "Link Text",
-        "description": "A textual label to associate with the link, which may be used for presentation in a tool.",
-        "type": "string"
-      }
-    },
-    "required": [
-      "href"
-    ],
-    "additionalProperties": false
-  }
-}
+// Future; not very happy with this..
+const schema = Object.entries(require('./catalog-schema.json').definitions).filter(
+  (key, value) => {
+    return key[1]["$id"] === "#assembly_oscal-metadata_link"
+      ? value
+      : false
+  })[0][1];
 
 /**
  * Rules (parameter -> and beyond):
