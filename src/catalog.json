@@ -1,0 +1,72 @@
+{
+    "metadata": {
+      "schema": "https://nvd.nist.gov/schema/oscal/1.0/control.schema.json",
+      "id": "whitelist-app-per-user",
+      "title": "Application Whitelisting per User",
+      "description": "This control enforces application whitelisting for each user on the system, ensuring that only approved applications can be executed.",
+      "type": "control",
+      "version": "1.0"
+    },
+    "control": {
+      "id": "whitelist-app-per-user",
+      "control-group": {
+        "title": "Access Control",
+        "id": "AC-01"
+      },
+      "family": {
+        "title": "System and Application Control",
+        "id": "SA-01"
+      },
+      "control-objective": {
+        "id": "CO-01",
+        "text": "Ensure that only approved applications are executed on the system"
+      },
+      "control-enhancements": [
+        {
+          "id": "CE-01",
+          "text": "Implement application whitelisting per user account"
+        }
+      ],
+      "control-assertions": [
+        {
+          "id": "CA-01",
+          "text": "All executed applications are approved by the system administrator"
+        }
+      ],
+      "control-parameters": [
+        {
+          "id": "CP-01",
+          "name": "Whitelist",
+          "description": "A list of approved applications that can be executed by each user",
+          "value": {
+            "type": "array",
+            "items": [
+              {
+                "user": "user1",
+                "applications": [
+                  "firefox",
+                  "libreoffice"
+                ]
+              },
+              {
+                "user": "user2",
+                "applications": [
+                  "chrome",
+                  "gnumeric"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "supplemental-guidance": "Administrators should regularly review the whitelist to ensure it remains up-to-date and that it includes only approved applications.",
+      "references": [
+        {
+          "id": "ref-01",
+          "href": "https://nist.gov/cyberframework/app-sec-focused-risk-management",
+          "title": "NIST Cybersecurity Framework: Application Security Focused Risk Management"
+        }
+      ]
+    }
+  }
+  

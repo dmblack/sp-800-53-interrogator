@@ -1,30 +1,12 @@
 {
   "configurations": [
     {
-      "name": "firefox-wsl",
-      "firefoxExecutable": "/mnt/c/Users/dusty/AppData/Local/Microsoft/WindowsApps/firefox.exe",
       "type": "firefox",
+      "request": "launch",
       "reAttach": true,
-      "request": "launch",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceRoot}",
-      "pathMappings": [
-        {
-          "url": "http://localhost:3000/home/dustynblackmore/Development/sp-800-53-interrogator/src",
-          "path": "${workspaceFolder}/src"
-        }
-      ]
-    },
-    {
-      "name": "edge-wsl",
-      "type": "msedge",
-      "request": "launch",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceRoot}",
-      "pathMapping": {
-        "url": "http://localhost:3000/home/dustynblackmore/Development/sp-800-53-interrogator/src",
-        "path": "${workspaceFolder}/src"
-      }
+      "name": "Launch localhost",
+      "url": "http://localhost:3000/",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
